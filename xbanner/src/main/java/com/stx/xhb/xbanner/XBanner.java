@@ -1141,6 +1141,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         startAutoPlay();
     }
 
+    //自动切换。
     private static class AutoSwitchTask implements Runnable {
         private final WeakReference<XBanner> mXBanner;
 

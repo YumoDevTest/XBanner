@@ -30,7 +30,8 @@
                 app:isShowTips="true"
                 app:pageChangeDuration="800"
                 app:pointsContainerBackground="@drawable/shape_round_8dp"
-                app:pointsPosition="RIGHT" />
+                app:pointsPosition="RIGHT"
+                android:visibility="gone"/>
 
 
             <com.stx.xhb.xbanner.XBanner
@@ -70,7 +71,8 @@
                 app:pointNormal="@drawable/shape_noraml"
                 app:pointSelect="@drawable/shape_selected"
                 app:pointsContainerBackground="@android:color/transparent"
-                app:pointsPosition="CENTER" />
+                app:pointsPosition="CENTER"
+                android:visibility="gone"/>
 
 
             <com.stx.xhb.xbanner.XBanner
@@ -86,7 +88,8 @@
                 app:isShowIndicatorOnlyOne="true"
                 app:isShowNumberIndicator="false"
                 app:pageChangeDuration="800"
-                app:pointsVisibility="false" />
+                app:pointsVisibility="false"
+                android:visibility="gone"/>
 
 
         </LinearLayout>
