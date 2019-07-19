@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
  */
 public class XBannerViewPager extends ViewPager {
 
+    //允许用户手动滑动
     private boolean mIsAllowUserScroll = true;
     private AutoPlayDelegate mAutoPlayDelegate;
 

@@ -62,6 +62,7 @@
                 app:bannerBottomMargin="30dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
+                app:isClipChildrenModeLessThree="true"
                 app:isHandLoop="true"
                 app:isShowIndicatorOnlyOne="true"
                 app:isShowNumberIndicator="false"

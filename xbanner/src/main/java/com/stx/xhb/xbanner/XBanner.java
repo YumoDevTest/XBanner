@@ -258,7 +258,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private int mViewPagerMargin;
 
     /*少于三张是否支持一屏多显模式*/
-    private boolean mIsClipChildrenModeLessThree;
+    private boolean mIsClipChildrenModeLessThree = false;
 
     /**
      * XBanner图片轮播区域底部Margin
@@ -350,7 +350,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mClipChildrenLeftRightMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenLeftRightMargin, mClipChildrenLeftRightMargin);
             mClipChildrenTopBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenTopBottomMargin, mClipChildrenTopBottomMargin);
             mViewPagerMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_viewpagerMargin, mViewPagerMargin);
-            mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
+            mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, true);
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
@@ -366,7 +366,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private void initView() {
-
         /*设置指示器背景容器*/
         RelativeLayout pointContainerRl = new RelativeLayout(getContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -553,9 +552,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private void setBannerData(@NonNull List<View> views, @NonNull List<? extends SimpleBannerInfo> data) {
 
+        //小于3个默认不自动播放。
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
         }
+
         if (!mIsClipChildrenModeLessThree && views.size() < 3) {
             mIsClipChildrenMode = false;
         }
@@ -648,7 +649,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 初始化ViewPager
      */
     private void initViewPager() {
-
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
             this.removeView(mViewPager);
             mViewPager = null;
@@ -764,6 +764,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
+    /**
+     * 处理用户手指松开后的滑动的处理
+     * @param xVelocity
+     */
     @Override
     public void handleAutoPlayActionUpOrCancel(float xVelocity) {
         assert mViewPager != null;
@@ -936,7 +940,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         return super.dispatchTouchEvent(ev);
     }
 
-
+    /**
+     * 开始自动切换
+     */
     public void startAutoPlay() {
         stopAutoPlay();
         if (mIsAutoPlay) {
@@ -944,6 +950,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
+    /**
+     * 结束自动切换
+     */
     public void stopAutoPlay() {
         if (mAutoSwitchTask != null) {
             removeCallbacks(mAutoSwitchTask);

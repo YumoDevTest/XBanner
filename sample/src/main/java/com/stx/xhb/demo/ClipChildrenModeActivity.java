@@ -28,6 +28,7 @@ import okhttp3.Call;
  */
 public class ClipChildrenModeActivity extends AppCompatActivity {
 
+    private final String LOG_TAG = "ClipChildrenModeActivit";
     private XBanner mBanner;
     private XBanner mBanner2;
     private XBanner mBanner3;
@@ -83,6 +84,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 SimpleDraweeView draweeView = (SimpleDraweeView) view;
                 TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
+                Log.i(LOG_TAG, url);
                 draweeView.setImageURI(Uri.parse(url));
 
 //                加载本地图片展示
@@ -129,7 +131,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
                         mBanner2.setIsClipChildrenMode(true);
-                        mBanner2.setBannerData(R.layout.layout_fresco_imageview, data.subList(0,2));
+                        mBanner2.setBannerData(R.layout.layout_fresco_imageview, data.subList(0,4));
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播

@@ -1,6 +1,8 @@
 package com.stx.xhb.xbanner.transformers;
 
+import android.print.PrinterId;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -13,15 +15,21 @@ import android.view.View;
  */
 public abstract class BasePageTransformer implements ViewPager.PageTransformer {
 
+    private final String LOG_TAG = "BasePageTransformer";
     @Override
     public void transformPage(View view, float position) {
         if (position < -1.0f) {
+            //不可见
+            Log.i(LOG_TAG, "handleInvisiblePage: "+view.toString()+" "+position);
             handleInvisiblePage(view, position);
         } else if (position <= 0.0f) {
+            Log.i(LOG_TAG, "handleLeftPage: "+view.toString()+" "+position);
             handleLeftPage(view, position);
         } else if (position <= 1.0f) {
+            Log.i(LOG_TAG, "handleRightPage: "+view.toString()+" "+position);
             handleRightPage(view, position);
         } else {
+            Log.i(LOG_TAG, "handleInvisiblePage: "+view.toString()+" "+position);
             handleInvisiblePage(view, position);
         }
     }
